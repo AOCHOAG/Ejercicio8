@@ -10,7 +10,6 @@ import Persistencia_json as Pj #Importo persiste... y lo abrevio como Pj
 
 lista_coches = [] #Creamos una lista vacía
 
-datos_coche = {}  # Creo un diccionario vacio
 Nombre_archivo = input("Dime como quieres llamar al archivo: ")
 
 while True: #creamos un bucle, para introducir varios elementos
@@ -21,11 +20,15 @@ while True: #creamos un bucle, para introducir varios elementos
     combustible = input("introduce el tipo de combiustible: ")
     cilindrada = input("Introduce la cilindrada: ")
 
+    datos_coche = {}  # Creo un diccionario vacio
     datos_coche ["Marca del coche: "] = marca_coche #añado "palabras" al diccionario
     datos_coche ["Modelo del coche: "] = modelo_coche
     datos_coche ["Tipo de combustible: "] = combustible
     datos_coche ["Cilindrada: "] = cilindrada
+    lista_coches.append(datos_coche)
 
-    Pj.store(datos_coche, Nombre_archivo)
-
-print("Estos son los coches de la lista: ", Pj.retrieve(Nombre_archivo))
+Pj.store(lista_coches, Nombre_archivo)
+lista_coches = []
+print("Lista de coches vacia: ", lista_coches)
+lista_coches = Pj.retrieve(Nombre_archivo)
+print("Estos son los coches de la lista: ", lista_coches)
